@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ShoppingComplex.Core.Entities
 {
-    public partial class TMaintenance
+    public partial class Maintenance
     {
         public int Id { get; set; }
         public string MaintenanceType { get; set; } = null!;
@@ -15,6 +15,6 @@ namespace ShoppingComplex.Core.Entities
         public int AdvancedValue { get; set; }
         public int Status { get; set; }
 
-        public virtual TContractor ContractorNavigation { get; set; } = null!;
+        public virtual Contractor ContractorNavigation { get; set; } = null!;
     }
 }

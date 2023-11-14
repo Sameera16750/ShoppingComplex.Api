@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 namespace ShoppingComplex.Core.Entities
 {
-    public partial class TStoreCatogory
+    public partial class StoreCatogory
     {
-        public TStoreCatogory()
+        public StoreCatogory()
         {
-            TStores = new HashSet<TStore>();
+            Stores = new HashSet<Store>();
         }
 
         public int Id { get; set; }
         public string CategoryName { get; set; } = null!;
         public int Status { get; set; }
 
-        public virtual ICollection<TStore> TStores { get; set; }
+        public virtual ICollection<Store> Stores { get; set; }
     }
 }

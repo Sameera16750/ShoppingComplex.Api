@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace ShoppingComplex.Core.Entities
 {
-    public partial class TContractor
+    public partial class Contractor
     {
-        public TContractor()
+        public Contractor()
         {
-            TMaintenances = new HashSet<TMaintenance>();
+            Maintenances = new HashSet<Maintenance>();
         }
 
         public int Id { get; set; }
@@ -17,6 +17,6 @@ namespace ShoppingComplex.Core.Entities
         public string Address { get; set; } = null!;
         public int Status { get; set; }
 
-        public virtual ICollection<TMaintenance> TMaintenances { get; set; }
+        public virtual ICollection<Maintenance> Maintenances { get; set; }
     }
 }

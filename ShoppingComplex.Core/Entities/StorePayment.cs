@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ShoppingComplex.Core.Entities
 {
-    public partial class TStorePayment
+    public partial class StorePayment
     {
         public int Id { get; set; }
         public string Year { get; set; } = null!;
@@ -13,6 +13,6 @@ namespace ShoppingComplex.Core.Entities
         public int Store { get; set; }
         public int Status { get; set; }
 
-        public virtual TStore StoreNavigation { get; set; } = null!;
+        public virtual Store StoreNavigation { get; set; } = null!;
     }
 }

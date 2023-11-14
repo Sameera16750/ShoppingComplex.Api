@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace ShoppingComplex.Core.Entities
 {
-    public partial class TStoreOwner
+    public partial class StoreOwner
     {
-        public TStoreOwner()
+        public StoreOwner()
         {
-            TStores = new HashSet<TStore>();
+            Stores = new HashSet<Store>();
         }
 
         public int Id { get; set; }
@@ -19,6 +19,6 @@ namespace ShoppingComplex.Core.Entities
         public string Nic { get; set; } = null!;
         public int Status { get; set; }
 
-        public virtual ICollection<TStore> TStores { get; set; }
+        public virtual ICollection<Store> Stores { get; set; }
     }
 }

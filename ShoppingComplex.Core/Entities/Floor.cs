@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace ShoppingComplex.Core.Entities
 {
-    public partial class TFloor
+    public partial class Floor
     {
-        public TFloor()
+        public Floor()
         {
-            TSpaces = new HashSet<TSpace>();
+            Spaces = new HashSet<Space>();
         }
 
         public int Id { get; set; }
@@ -15,6 +15,6 @@ namespace ShoppingComplex.Core.Entities
         public int TotalSpaces { get; set; }
         public int Status { get; set; }
 
-        public virtual ICollection<TSpace> TSpaces { get; set; }
+        public virtual ICollection<Space> Spaces { get; set; }
     }
 }

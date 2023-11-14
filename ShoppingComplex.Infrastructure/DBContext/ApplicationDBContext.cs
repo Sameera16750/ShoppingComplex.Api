@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using ShoppingComplex.Core.Entities;
 
-namespace ShoppingComplex.Infrastructure.DBContext
+namespace ShoppingComplex.Core.DBContext
 {
     public partial class ApplicationDbContext : DbContext
     {
@@ -17,29 +17,29 @@ namespace ShoppingComplex.Infrastructure.DBContext
         {
         }
 
-        public virtual DbSet<TContractor> TContractors { get; set; } = null!;
-        public virtual DbSet<TFloor> TFloors { get; set; } = null!;
-        public virtual DbSet<TMaintenance> TMaintenances { get; set; } = null!;
-        public virtual DbSet<TSpace> TSpaces { get; set; } = null!;
-        public virtual DbSet<TStore> TStores { get; set; } = null!;
-        public virtual DbSet<TStoreCatogory> TStoreCatogories { get; set; } = null!;
-        public virtual DbSet<TStoreOwner> TStoreOwners { get; set; } = null!;
-        public virtual DbSet<TStorePayment> TStorePayments { get; set; } = null!;
+        public virtual DbSet<Contractor> Contractors { get; set; } = null!;
+        public virtual DbSet<Floor> Floors { get; set; } = null!;
+        public virtual DbSet<Maintenance> Maintenances { get; set; } = null!;
+        public virtual DbSet<Space> Spaces { get; set; } = null!;
+        public virtual DbSet<Store> Stores { get; set; } = null!;
+        public virtual DbSet<StoreCatogory> StoreCatogories { get; set; } = null!;
+        public virtual DbSet<StoreOwner> StoreOwners { get; set; } = null!;
+        public virtual DbSet<StorePayment> StorePayments { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-E339CMN\\SQLEXPRESS;Database=shoping_complex;Trusted_connection=true;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-E339CMN\\SQLEXPRESS;Database=shopping_complex;Trusted_connection=true;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TContractor>(entity =>
+            modelBuilder.Entity<Contractor>(entity =>
             {
-                entity.ToTable("T_Contractor");
+                entity.ToTable("Contractor");
 
                 entity.Property(e => e.Address).IsUnicode(false);
 
@@ -50,18 +50,18 @@ namespace ShoppingComplex.Infrastructure.DBContext
                 entity.Property(e => e.Name).IsUnicode(false);
             });
 
-            modelBuilder.Entity<TFloor>(entity =>
+            modelBuilder.Entity<Floor>(entity =>
             {
-                entity.ToTable("T_Floor");
+                entity.ToTable("Floor");
 
                 entity.Property(e => e.FloorNumber).IsUnicode(false);
 
                 entity.Property(e => e.Status).HasColumnName("status");
             });
 
-            modelBuilder.Entity<TMaintenance>(entity =>
+            modelBuilder.Entity<Maintenance>(entity =>
             {
-                entity.ToTable("T_Maintenance");
+                entity.ToTable("Maintenance");
 
                 entity.Property(e => e.EndDate).IsUnicode(false);
 
@@ -72,30 +72,28 @@ namespace ShoppingComplex.Infrastructure.DBContext
                 entity.Property(e => e.StartDate).IsUnicode(false);
 
                 entity.HasOne(d => d.ContractorNavigation)
-                    .WithMany(p => p.TMaintenances)
+                    .WithMany(p => p.Maintenances)
                     .HasForeignKey(d => d.Contractor)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_Maintenance_T_Contractor");
             });
 
-            modelBuilder.Entity<TSpace>(entity =>
+            modelBuilder.Entity<Space>(entity =>
             {
-                entity.ToTable("T_Spaces");
-
                 entity.Property(e => e.SpaceNumber).IsUnicode(false);
 
                 entity.Property(e => e.SpaceSize).IsUnicode(false);
 
                 entity.HasOne(d => d.FloorNavigation)
-                    .WithMany(p => p.TSpaces)
+                    .WithMany(p => p.Spaces)
                     .HasForeignKey(d => d.Floor)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_Spaces_T_Floor");
             });
 
-            modelBuilder.Entity<TStore>(entity =>
+            modelBuilder.Entity<Store>(entity =>
             {
-                entity.ToTable("T_Store");
+                entity.ToTable("Store");
 
                 entity.Property(e => e.RentalDate).IsUnicode(false);
 
@@ -104,34 +102,34 @@ namespace ShoppingComplex.Infrastructure.DBContext
                 entity.Property(e => e.StoreName).IsUnicode(false);
 
                 entity.HasOne(d => d.SpaceNavigation)
-                    .WithMany(p => p.TStores)
+                    .WithMany(p => p.Stores)
                     .HasForeignKey(d => d.Space)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_Store_T_Spaces");
 
                 entity.HasOne(d => d.StoreCategoryNavigation)
-                    .WithMany(p => p.TStores)
+                    .WithMany(p => p.Stores)
                     .HasForeignKey(d => d.StoreCategory)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_Store_T_StoreCatogory");
 
                 entity.HasOne(d => d.StoreOwnerNavigation)
-                    .WithMany(p => p.TStores)
+                    .WithMany(p => p.Stores)
                     .HasForeignKey(d => d.StoreOwner)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_Store_T_StoreOwner");
             });
 
-            modelBuilder.Entity<TStoreCatogory>(entity =>
+            modelBuilder.Entity<StoreCatogory>(entity =>
             {
-                entity.ToTable("T_StoreCatogory");
+                entity.ToTable("StoreCatogory");
 
                 entity.Property(e => e.CategoryName).IsUnicode(false);
             });
 
-            modelBuilder.Entity<TStoreOwner>(entity =>
+            modelBuilder.Entity<StoreOwner>(entity =>
             {
-                entity.ToTable("T_StoreOwner");
+                entity.ToTable("StoreOwner");
 
                 entity.Property(e => e.Address).IsUnicode(false);
 
@@ -148,16 +146,16 @@ namespace ShoppingComplex.Infrastructure.DBContext
                     .HasColumnName("NIC");
             });
 
-            modelBuilder.Entity<TStorePayment>(entity =>
+            modelBuilder.Entity<StorePayment>(entity =>
             {
-                entity.ToTable("T_StorePayment");
+                entity.ToTable("StorePayment");
 
                 entity.Property(e => e.Month).IsUnicode(false);
 
                 entity.Property(e => e.Year).IsUnicode(false);
 
                 entity.HasOne(d => d.StoreNavigation)
-                    .WithMany(p => p.TStorePayments)
+                    .WithMany(p => p.StorePayments)
                     .HasForeignKey(d => d.Store)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_T_StorePayment_T_Store");

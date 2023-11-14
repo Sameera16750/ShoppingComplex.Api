@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace ShoppingComplex.Core.Entities
 {
-    public partial class TStore
+    public partial class Store
     {
-        public TStore()
+        public Store()
         {
-            TStorePayments = new HashSet<TStorePayment>();
+            StorePayments = new HashSet<StorePayment>();
         }
 
         public int Id { get; set; }
@@ -21,9 +21,9 @@ namespace ShoppingComplex.Core.Entities
         public string RentalEndDate { get; set; } = null!;
         public int Status { get; set; }
 
-        public virtual TSpace SpaceNavigation { get; set; } = null!;
-        public virtual TStoreCatogory StoreCategoryNavigation { get; set; } = null!;
-        public virtual TStoreOwner StoreOwnerNavigation { get; set; } = null!;
-        public virtual ICollection<TStorePayment> TStorePayments { get; set; }
+        public virtual Space SpaceNavigation { get; set; } = null!;
+        public virtual StoreCatogory StoreCategoryNavigation { get; set; } = null!;
+        public virtual StoreOwner StoreOwnerNavigation { get; set; } = null!;
+        public virtual ICollection<StorePayment> StorePayments { get; set; }
     }
 }
