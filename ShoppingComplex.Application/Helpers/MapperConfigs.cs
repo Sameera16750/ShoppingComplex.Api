@@ -8,7 +8,7 @@ namespace ShoppingComplex.Application.Helpers
         // this used for add mapping configs 
         public MapperConfigs()
         {
-
+         // asdas   
         }
     }
 }
