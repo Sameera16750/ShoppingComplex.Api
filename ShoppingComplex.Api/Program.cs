@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ShoppingComplex.Application.Configs;
 using ShoppingComplex.Infrastructure.Configs;
+using ShoppingComplex.Infrastructure.DBContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ builder.Services.AddApplicationDependencyGroup();
 
 // Add infrastructure Layer Dependency Injection
 builder.Services.AddInfrastructureDependencyGroup();
+
+builder.Services.AddDbContext<ApplicationDbContext>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

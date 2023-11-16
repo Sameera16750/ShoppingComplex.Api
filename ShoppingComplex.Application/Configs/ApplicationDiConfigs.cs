@@ -11,7 +11,9 @@ namespace ShoppingComplex.Application.Configs
         public static IServiceCollection AddApplicationDependencyGroup(
              this IServiceCollection services)
         {
-            services.AddScoped<IUserService, IUserServiceImpl>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddScoped<IUserService, UserServiceImpl>();
+            services.AddScoped<IFloorService, FloorServiceImpl>();
             return services;
         }
     }

@@ -12,6 +12,7 @@ namespace ShoppingComplex.Infrastructure.Configs
              this IServiceCollection services)
         {
             services.AddScoped<IUserRepo,IUserRepoImpl>();
+            services.AddScoped<IFloorRepo,FloorRepoImpl>();
             return services;
         }
     }

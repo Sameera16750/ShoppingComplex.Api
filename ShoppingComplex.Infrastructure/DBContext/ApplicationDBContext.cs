@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using ShoppingComplex.Core.Entities;
 
-namespace ShoppingComplex.Core.DBContext
+namespace ShoppingComplex.Infrastructure.DBContext
 {
     public partial class ApplicationDbContext : DbContext
     {
