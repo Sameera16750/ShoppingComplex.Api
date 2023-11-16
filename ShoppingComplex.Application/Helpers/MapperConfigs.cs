@@ -9,24 +9,12 @@ namespace ShoppingComplex.Application.Helpers
     public class MapperConfigs : Profile
     {
         // this used for add mapping configs 
-
-        private IMapper _mapper;
-
         public MapperConfigs()
         {
             CreateMap<FloorRequest, Floor>();
-            CreateMap<Floor,FloorResponse>();
-        }
-
-        public MapperConfigs(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
-
-        public List<TDestination> MapList<TSource, TDestination>(List<TSource> sourceList)
-        {
-            return _mapper.Map<List<TDestination>>(sourceList);
+            CreateMap<Floor, FloorResponse>();
+            CreateMap<SpaceRequest, Space>();
+            CreateMap<Space, SpaceResponse>();
         }
     }
-    
 }

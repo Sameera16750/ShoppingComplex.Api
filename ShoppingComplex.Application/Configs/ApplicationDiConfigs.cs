@@ -14,6 +14,7 @@ namespace ShoppingComplex.Application.Configs
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IUserService, UserServiceImpl>();
             services.AddScoped<IFloorService, FloorServiceImpl>();
+            services.AddScoped<ISpaceService,SpaceServiceImpl>();
             return services;
         }
     }

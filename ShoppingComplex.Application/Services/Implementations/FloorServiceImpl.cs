@@ -31,10 +31,8 @@ namespace ShoppingComplex.Application.Services.Implementations
                 {
                     return new HttpResponse(200, "data adding succeeded");
                 }
-                else
-                {
-                    return new HttpResponse(500, "internal server Error, Please try again later");
-                }
+
+                return new HttpResponse(500, "internal server Error, Please try again later");
             }
             catch (Exception)
             {
@@ -64,13 +62,13 @@ namespace ShoppingComplex.Application.Services.Implementations
             }
         }
 
-        // for update get floor by id
+        // for get floor by id
         public HttpResponse GetFloorById(int id)
         {
             try
             {
                 Floor? floor = _floorRepo.GetFloorById(id);
-                if (_floorRepo.GetFloorById(id) != null)
+                if (floor != null)
                 {
                     return new HttpResponse(200, _mapper.Map<FloorResponse>(floor));
                 }
@@ -89,7 +87,7 @@ namespace ShoppingComplex.Application.Services.Implementations
             try
             {
                 List<Floor> floorList = _floorRepo.GetAllByStatus(status);
-                if (floorList.Count>0)
+                if (floorList.Count > 0)
                 {
                     return new HttpResponse(200, _mapper.Map<List<FloorResponse>>(floorList));
                 }
@@ -104,10 +102,11 @@ namespace ShoppingComplex.Application.Services.Implementations
 
         // for get all floor list
         public HttpResponse GetAll()
-        {try
+        {
+            try
             {
                 List<Floor> floorList = _floorRepo.GetAll();
-                if (floorList.Count>0)
+                if (floorList.Count > 0)
                 {
                     return new HttpResponse(200, _mapper.Map<List<FloorResponse>>(floorList));
                 }

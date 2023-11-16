@@ -13,6 +13,7 @@ namespace ShoppingComplex.Infrastructure.Configs
         {
             services.AddScoped<IUserRepo,IUserRepoImpl>();
             services.AddScoped<IFloorRepo,FloorRepoImpl>();
+            services.AddScoped<ISpaceRepo,SpaceRepoImpl>();
             return services;
         }
     }
