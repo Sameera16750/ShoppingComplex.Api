@@ -33,7 +33,8 @@ namespace ShoppingComplex.Infrastructure.Repositories.Implementations
         // for get space details from db using id
         public Space? GetSpaceById(int id)
         {
-            return _applicationDbContext.Spaces.FromSqlRaw($"EXEC [dbo].[SelectSpaceById] {id}").ToList().FirstOrDefault();
+            return _applicationDbContext.Spaces.FromSqlRaw($"EXEC [dbo].[SelectSpaceById] {id}").ToList()
+                .FirstOrDefault();
         }
 
         // for get all space details from db using status
@@ -46,6 +47,12 @@ namespace ShoppingComplex.Infrastructure.Repositories.Implementations
         public List<Space> GetAll()
         {
             return _applicationDbContext.Spaces.FromSqlRaw($"EXEC [dbo].[SelectSpaceByStatus]").ToList();
+        }
+
+        // for delete space
+        public int DeleteSpace(int id)
+        {
+            return _applicationDbContext.Database.ExecuteSqlRaw($"EXEC [dbo].[DeleteSpace] {id}");
         }
     }
 }

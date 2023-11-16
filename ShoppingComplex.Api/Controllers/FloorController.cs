@@ -51,5 +51,13 @@ namespace ShoppingComplex.Api.Controllers
         {
             return _floorService.GetAll();
         }
+        
+        // for delete floor
+        [HttpDelete("delete/{id}")]
+        public HttpResponse DeleteFloor(int id)
+        {
+            return _floorService.DeleteFloor(id);
+        }
+        
     }
 }

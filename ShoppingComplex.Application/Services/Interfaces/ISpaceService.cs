@@ -19,5 +19,10 @@ namespace ShoppingComplex.Application.Services.Interfaces
         
         // for get all Space list
         HttpResponse GetAll();
+        
+                
+        // for update existing space details
+        HttpResponse DeleteSpace(int id);
+
     }
 }

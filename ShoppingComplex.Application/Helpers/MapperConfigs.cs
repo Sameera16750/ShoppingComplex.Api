@@ -15,6 +15,8 @@ namespace ShoppingComplex.Application.Helpers
             CreateMap<Floor, FloorResponse>();
             CreateMap<SpaceRequest, Space>();
             CreateMap<Space, SpaceResponse>();
+            CreateMap<StoreCategoryRequest, StoreCatogory>();
+            CreateMap<StoreCatogory,StoreCategoryResponse>();
         }
     }
 }

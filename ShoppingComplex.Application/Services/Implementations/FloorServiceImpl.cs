@@ -111,7 +111,30 @@ namespace ShoppingComplex.Application.Services.Implementations
                     return new HttpResponse(200, _mapper.Map<List<FloorResponse>>(floorList));
                 }
 
-                return new HttpResponse(200, "This Table is Empty");
+                return new HttpResponse(404, "This Table is Empty");
+            }
+            catch (Exception e)
+            {
+                return new HttpResponse(500, e.Message);
+            }
+        }
+
+        // for delete floor
+        public HttpResponse DeleteFloor(int id)
+        {
+            try
+            {
+                if (_floorRepo.GetFloorById(id)!=null)
+                {
+                    if (_floorRepo.DeleteFloor(id)>0)
+                    {
+                        return new HttpResponse(200, "Floor Delete Succeeded");
+                    }
+
+                    return new HttpResponse(500, "Internal server Error");
+                }
+
+                return new HttpResponse(404, $"this element (floor id : {id}) not found in DB");
             }
             catch (Exception e)
             {

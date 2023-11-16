@@ -9,12 +9,13 @@ namespace ShoppingComplex.Application.Configs
     {
         // Registering Dependency injections to services
         public static IServiceCollection AddApplicationDependencyGroup(
-             this IServiceCollection services)
+            this IServiceCollection services)
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IUserService, UserServiceImpl>();
             services.AddScoped<IFloorService, FloorServiceImpl>();
-            services.AddScoped<ISpaceService,SpaceServiceImpl>();
+            services.AddScoped<ISpaceService, SpaceServiceImpl>();
+            services.AddScoped<IStoreCategoryService, StoreCategoryServiceImpl>();
             return services;
         }
     }

@@ -18,6 +18,9 @@ namespace ShoppingComplex.Infrastructure.Repositories.Interfaces
         
         // for get all floor details from db
         List<Floor> GetAll();
+        
+        // for delete floor
+        int DeleteFloor(int id);
     }    
 }
 

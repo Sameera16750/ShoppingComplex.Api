@@ -18,6 +18,9 @@ namespace ShoppingComplex.Application.Services.Interfaces
         
         // for get all floor list
         HttpResponse GetAll();
+
+        // for delete floor
+        HttpResponse DeleteFloor(int id);
     }    
 }
 

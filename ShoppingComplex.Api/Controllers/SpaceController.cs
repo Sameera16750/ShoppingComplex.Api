@@ -54,5 +54,11 @@ namespace ShoppingComplex.Api.Controllers
             return _spaceService.GetAll();
         }
         
+        // for delete Space
+        [HttpDelete("delete/{id}")]
+        public HttpResponse DeleteFloor(int id)
+        {
+            return _spaceService.DeleteSpace(id);
+        }
     }
 }

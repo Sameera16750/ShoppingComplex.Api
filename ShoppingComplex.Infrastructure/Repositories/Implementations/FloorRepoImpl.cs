@@ -47,5 +47,11 @@ namespace ShoppingComplex.Infrastructure.Repositories.Implementations
         {
             return _applicationDbContext.Floors.FromSqlRaw($"EXEC [dbo].[SelectFloorsByStatus]").ToList();
         }
+
+        // for delete floor
+        public int DeleteFloor(int id)
+        {
+            return _applicationDbContext.Database.ExecuteSqlRaw($"EXEC [dbo].[DeleteFloor] {id}");
+        }
     }
 }

@@ -132,5 +132,28 @@ namespace ShoppingComplex.Application.Services.Implementations
                 return new HttpResponse(500, e.Message);
             }
         }
+        
+        // for delete Space
+        public HttpResponse DeleteSpace(int id)
+        {
+            try
+            {
+                if (_spaceRepo.GetSpaceById(id)!=null)
+                {
+                    if (_spaceRepo.DeleteSpace(id)>0)
+                    {
+                        return new HttpResponse(200, "Space Delete Succeeded");
+                    }
+
+                    return new HttpResponse(500, "Internal server Error");
+                }
+
+                return new HttpResponse(404, $"this element (Space id : {id}) not found in DB");
+            }
+            catch (Exception e)
+            {
+                return new HttpResponse(500, e.Message);
+            }
+        }
     }
 }

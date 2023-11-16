@@ -9,11 +9,12 @@ namespace ShoppingComplex.Infrastructure.Configs
     {
         // Registering Dependency injections to services
         public static IServiceCollection AddInfrastructureDependencyGroup(
-             this IServiceCollection services)
+            this IServiceCollection services)
         {
-            services.AddScoped<IUserRepo,IUserRepoImpl>();
-            services.AddScoped<IFloorRepo,FloorRepoImpl>();
-            services.AddScoped<ISpaceRepo,SpaceRepoImpl>();
+            services.AddScoped<IUserRepo, IUserRepoImpl>();
+            services.AddScoped<IFloorRepo, FloorRepoImpl>();
+            services.AddScoped<ISpaceRepo, SpaceRepoImpl>();
+            services.AddScoped<IStoreCategoryRepo, StoreCategoryRepoImpl>();
             return services;
         }
     }

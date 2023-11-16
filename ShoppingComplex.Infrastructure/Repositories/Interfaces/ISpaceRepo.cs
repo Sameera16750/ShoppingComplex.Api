@@ -18,5 +18,8 @@ namespace ShoppingComplex.Infrastructure.Repositories.Interfaces
         
         // for get all space details from db
         List<Space> GetAll();
+        
+        // for delete space
+        int DeleteSpace(int id);
     }
 }
