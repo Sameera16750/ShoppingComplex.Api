@@ -19,6 +19,7 @@ namespace ShoppingComplex.Application.Configs
             services.AddScoped<IStoreOwnerService, StoreOwnerServiceImpl>();
             services.AddScoped<IStoreService, StoreServiceImpl>();
             services.AddScoped<IContractorService, ContractorServiceImpl>();
+            services.AddScoped<IMaintenanceService,MaintenanceServiceImpl>();
             return services;
         }
     }

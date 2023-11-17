@@ -23,6 +23,8 @@ namespace ShoppingComplex.Application.Helpers
             CreateMap<Store, StoreResponse>();
             CreateMap<ContractorRequest, Contractor>();
             CreateMap<Contractor,ContractorResponse>();
+            CreateMap<MaintenanceRequest,Maintenance>();
+            CreateMap<Maintenance,MaintenanceResponse>();
         }
     }
 }
