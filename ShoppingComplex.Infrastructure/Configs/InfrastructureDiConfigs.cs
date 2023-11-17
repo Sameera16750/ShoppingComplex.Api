@@ -17,6 +17,7 @@ namespace ShoppingComplex.Infrastructure.Configs
             services.AddScoped<IStoreCategoryRepo, StoreCategoryRepoImpl>();
             services.AddScoped<IStoreOwnerRepo, StoreOwnerRepoImpl>();
             services.AddScoped<IStoreRepo, StoreRepoServiceImpl>();
+            services.AddScoped<IContractorRepo, ContractorRepoImpl>();
             return services;
         }
     }

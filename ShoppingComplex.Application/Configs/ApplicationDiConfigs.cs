@@ -16,8 +16,9 @@ namespace ShoppingComplex.Application.Configs
             services.AddScoped<IFloorService, FloorServiceImpl>();
             services.AddScoped<ISpaceService, SpaceServiceImpl>();
             services.AddScoped<IStoreCategoryService, StoreCategoryServiceImpl>();
-            services.AddScoped<IStoreOwnerService,StoreOwnerServiceImpl>();
+            services.AddScoped<IStoreOwnerService, StoreOwnerServiceImpl>();
             services.AddScoped<IStoreService, StoreServiceImpl>();
+            services.AddScoped<IContractorService, ContractorServiceImpl>();
             return services;
         }
     }
