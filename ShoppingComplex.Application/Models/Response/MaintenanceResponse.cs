@@ -7,7 +7,7 @@ namespace ShoppingComplex.Application.Models.Response
         public int Id { get; set; }
         public string MaintenanceType { get; set; } = null!;
         public string Location { get; set; } = null!;
-        public Contractor ContractorNavigations { get; set; } = null!;
+        public ContractorResponse ContractorNavigation { get; set; } = null!;
         public string StartDate { get; set; } = null!;
         public string EndDate { get; set; } = null!;
         public int TotalCharge { get; set; }
