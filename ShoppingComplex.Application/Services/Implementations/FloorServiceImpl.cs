@@ -56,9 +56,9 @@ namespace ShoppingComplex.Application.Services.Implementations
                     return new HttpResponse(500, "internal server Error, Please try again later");
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return new HttpResponse(500, "internal server Error, Please try again later");
+                return new HttpResponse(500, e.Message);
             }
         }
 

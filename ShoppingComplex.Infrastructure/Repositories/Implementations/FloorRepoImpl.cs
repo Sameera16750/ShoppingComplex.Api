@@ -27,7 +27,7 @@ namespace ShoppingComplex.Infrastructure.Repositories.Implementations
         public int UpdateFloor(Floor floor)
         {
             return _applicationDbContext.Database.ExecuteSqlRaw(
-                $"EXEC [dbo].[UpdateFloor] {floor.Id},{floor.FloorNumber},{floor.TotalSpaces},{floor.Status}");
+                $"EXEC [dbo].[UpdateFloor] {floor.Id},'{floor.FloorNumber}',{floor.TotalSpaces},{floor.Status}");
         }
 
         // for get floor details from db using id
