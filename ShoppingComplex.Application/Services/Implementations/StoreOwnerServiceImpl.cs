@@ -7,26 +7,27 @@ using ShoppingComplex.Infrastructure.Repositories.Interfaces;
 
 namespace ShoppingComplex.Application.Services.Implementations
 {
-    public class StoreCategoryServiceImpl : IStoreCategoryService
+    public class StoreOwnerServiceImpl : IStoreOwnerService
     {
         // auto mapper instance
         private readonly IMapper _mapper;
 
-        // store category repository instance
-        private readonly IStoreCategoryRepo _storeCategoryRepo;
-
-        public StoreCategoryServiceImpl(IStoreCategoryRepo storeCategoryRepo, IMapper mapper)
+        // store owner repository instance
+        private readonly IStoreOwnerRepo _storeOwnerRepo;
+        
+        // constructor
+        public StoreOwnerServiceImpl(IMapper mapper, IStoreOwnerRepo storeOwnerRepo)
         {
-            _storeCategoryRepo = storeCategoryRepo;
             _mapper = mapper;
+            _storeOwnerRepo = storeOwnerRepo;
         }
 
-        // for save store category
-        public HttpResponse SaveStoreCategory(StoreCategoryRequest storeCategoryRequest)
+        // for save store owner
+        public HttpResponse SaveStoreOwner(StoreOwnerRequest storeOwnerRequest)
         {
             try
             {
-                if (_storeCategoryRepo.SaveStoreCategory(_mapper.Map<StoreCatogory>(storeCategoryRequest)) > 0)
+                if (_storeOwnerRepo.SaveStoreOwner(_mapper.Map<StoreOwner>(storeOwnerRequest)) > 0)
                 {
                     return new HttpResponse(200, "data adding succeeded");
                 }
@@ -39,16 +40,16 @@ namespace ShoppingComplex.Application.Services.Implementations
             }
         }
 
-        // for update existing Store Category
-        public HttpResponse UpdateStoreCategory(int id, StoreCategoryRequest storeCategoryRequest)
+        // for update existing Store Owner
+        public HttpResponse UpdateStoreOwner(int id, StoreOwnerRequest storeOwnerRequest)
         {
             try
             {
-                StoreCatogory storeCategory = _mapper.Map<StoreCatogory>(storeCategoryRequest);
-                storeCategory.Id = id;
-                if (_storeCategoryRepo.UpdateStoreCategory(storeCategory) > 0)
+                StoreOwner storeOwner = _mapper.Map<StoreOwner>(storeOwnerRequest);
+                storeOwner.Id = id;
+                if (_storeOwnerRepo.UpdateStoreOwner(storeOwner) > 0)
                 {
-                    return new HttpResponse(200, "Store Category Update Success");
+                    return new HttpResponse(200, "Store Owner Data Update Success");
                 }
                 else
                 {
@@ -61,15 +62,15 @@ namespace ShoppingComplex.Application.Services.Implementations
             }
         }
 
-        // for get Store Category by id
-        public HttpResponse GetStoreCategoryById(int id)
+        // for get Store Owner by id
+        public HttpResponse GetStoreOwnerById(int id)
         {
             try
             {
-                StoreCatogory? storeCategory = _storeCategoryRepo.GetStoreCategoryById(id);
-                if (storeCategory != null)
+                StoreOwner? storeOwner = _storeOwnerRepo.GetStoreOwnerById(id);
+                if (storeOwner != null)
                 {
-                    return new HttpResponse(200, _mapper.Map<StoreCategoryResponse>(storeCategory));
+                    return new HttpResponse(200, _mapper.Map<StoreOwnerResponse>(storeOwner));
                 }
 
                 return new HttpResponse(200, "Data not fond from this id");
@@ -80,15 +81,15 @@ namespace ShoppingComplex.Application.Services.Implementations
             }
         }
 
-        // for get Store Category list by status
-        public HttpResponse GetStoreCategoryListByStatus(int status)
+        // for get Store Owner list by status
+        public HttpResponse GetStoreOwnerListByStatus(int status)
         {
             try
             {
-                List<StoreCatogory> storeCategories = _storeCategoryRepo.GetAllByStatus(status);
-                if (storeCategories.Count > 0)
+                List<StoreOwner> storeOwners = _storeOwnerRepo.GetAllByStatus(status);
+                if (storeOwners.Count > 0)
                 {
-                    return new HttpResponse(200, _mapper.Map<List<StoreCategoryResponse>>(storeCategories));
+                    return new HttpResponse(200, _mapper.Map<List<StoreOwnerResponse>>(storeOwners));
                 }
 
                 return new HttpResponse(200, "Data not fond from this status");
@@ -99,15 +100,15 @@ namespace ShoppingComplex.Application.Services.Implementations
             }
         }
 
-        // for get all Store Category list
+        // for get all Store Owner list
         public HttpResponse GetAll()
         {
             try
             {
-                List<StoreCatogory> storeCategories = _storeCategoryRepo.GetAll();
-                if (storeCategories.Count > 0)
+                List<StoreOwner> storeOwners = _storeOwnerRepo.GetAll();
+                if (storeOwners.Count > 0)
                 {
-                    return new HttpResponse(200, _mapper.Map<List<StoreCategoryResponse>>(storeCategories));
+                    return new HttpResponse(200, _mapper.Map<List<StoreOwnerResponse>>(storeOwners));
                 }
 
                 return new HttpResponse(404, "This Table is Empty");
@@ -118,28 +119,27 @@ namespace ShoppingComplex.Application.Services.Implementations
             }
         }
 
-        // for delete Store Category
-        public HttpResponse DeleteStoreCategory(int id)
+        // for delete Store Owner
+        public HttpResponse DeleteStoreOwner(int id)
         {
             try
             {
-                if (_storeCategoryRepo.GetStoreCategoryById(id)!=null)
+                if (_storeOwnerRepo.GetStoreOwnerById(id) != null)
                 {
-                    if (_storeCategoryRepo.DeleteStoreCategory(id)>0)
+                    if (_storeOwnerRepo.DeleteOwner(id) > 0)
                     {
-                        return new HttpResponse(200, "Store Category Delete Succeeded");
+                        return new HttpResponse(200, "Store Owner Delete Succeeded");
                     }
 
                     return new HttpResponse(500, "Internal server Error");
                 }
 
-                return new HttpResponse(404, $"this element (Store Category id : {id}) not found in DB");
+                return new HttpResponse(404, $"this element (Store Owner id : {id}) not found in DB");
             }
             catch (Exception e)
             {
                 return new HttpResponse(500, e.Message);
             }
-
         }
     }
 }

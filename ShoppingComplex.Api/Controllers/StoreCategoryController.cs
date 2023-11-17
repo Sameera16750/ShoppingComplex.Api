@@ -12,6 +12,7 @@ namespace ShoppingComplex.Api.Controllers
         // store category instance
         private readonly IStoreCategoryService _storeCategoryService;
         
+        //constructor
         public StoreCategoryController(IStoreCategoryService storeCategoryService)
         {
             _storeCategoryService = storeCategoryService;
@@ -45,7 +46,7 @@ namespace ShoppingComplex.Api.Controllers
             return _storeCategoryService.GetStoreCategoryListByStatus(status);
         }
         
-        // for get store category list by status 
+        // for get store category list 
         [HttpGet("get_all")]
         public HttpResponse GetStoreCategoryListByStatus()
         {

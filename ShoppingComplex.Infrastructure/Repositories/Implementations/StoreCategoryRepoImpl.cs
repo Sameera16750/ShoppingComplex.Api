@@ -54,7 +54,7 @@ namespace ShoppingComplex.Infrastructure.Repositories.Implementations
         }
 
         // for delete Store Category
-        public int DeleteFloor(int id)
+        public int DeleteStoreCategory(int id)
         {
             return _applicationDbContext.Database.ExecuteSqlRaw($"EXEC [dbo].[DeleteStoreCategory] {id}");
         }

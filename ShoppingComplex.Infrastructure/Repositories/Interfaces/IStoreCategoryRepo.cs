@@ -20,7 +20,7 @@ namespace ShoppingComplex.Infrastructure.Repositories.Interfaces
         List<StoreCatogory> GetAll();
         
         // for delete Store Category
-        int DeleteFloor(int id);
+        int DeleteStoreCategory(int id);
     }    
 }
 
