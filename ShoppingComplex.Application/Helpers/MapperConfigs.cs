@@ -19,6 +19,8 @@ namespace ShoppingComplex.Application.Helpers
             CreateMap<StoreCatogory,StoreCategoryResponse>();
             CreateMap<StoreOwnerRequest, StoreOwner>();
             CreateMap<StoreOwner, StoreOwnerResponse>();
+            CreateMap<StoreRequest, Store>();
+            CreateMap<Store, StoreResponse>();
         }
     }
 }

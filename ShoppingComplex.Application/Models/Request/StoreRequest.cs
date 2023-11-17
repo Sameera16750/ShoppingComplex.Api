@@ -2,7 +2,6 @@
 {
     public class StoreRequest
     {
-        public int Id { get; set; }
         public string StoreName { get; set; } = null!;
         public int StoreOwner { get; set; }
         public int StoreCategory { get; set; }

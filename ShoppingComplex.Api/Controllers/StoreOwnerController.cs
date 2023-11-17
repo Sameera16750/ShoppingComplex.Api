@@ -54,7 +54,7 @@ namespace ShoppingComplex.Api.Controllers
         
         // for delete store owner
         [HttpDelete("delete/{id}")]
-        public HttpResponse DeleteStoreCategory(int id)
+        public HttpResponse DeleteStore(int id)
         {
             return _storeOwnerService.DeleteStoreOwner(id);
         }
