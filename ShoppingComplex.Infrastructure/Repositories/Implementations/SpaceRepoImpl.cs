@@ -9,11 +9,13 @@ namespace ShoppingComplex.Infrastructure.Repositories.Implementations
     {
         // for db context instance
         private readonly ApplicationDbContext _applicationDbContext;
+        private readonly IFloorRepo _floorRepo;
 
         // constructor 
-        public SpaceRepoImpl(ApplicationDbContext applicationDbContext)
+        public SpaceRepoImpl(ApplicationDbContext applicationDbContext, IFloorRepo floorRepo)
         {
             _applicationDbContext = applicationDbContext;
+            _floorRepo = floorRepo;
         }
 
         // for save space in db        
@@ -33,26 +35,48 @@ namespace ShoppingComplex.Infrastructure.Repositories.Implementations
         // for get space details from db using id
         public Space? GetSpaceById(int id)
         {
-            return _applicationDbContext.Spaces.FromSqlRaw($"EXEC [dbo].[SelectSpaceById] {id}").ToList()
-                .FirstOrDefault();
+            return UpdateSpaceList(_applicationDbContext.Spaces.FromSqlRaw($"EXEC [dbo].[SelectSpaceById] {id}")
+                .ToList()).FirstOrDefault();
         }
 
         // for get all space details from db using status
         public List<Space> GetAllByStatus(int status)
         {
-            return _applicationDbContext.Spaces.FromSqlRaw($"EXEC [dbo].[SelectSpaceByStatus] {status}").ToList();
+            return UpdateSpaceList(_applicationDbContext.Spaces.FromSqlRaw($"EXEC [dbo].[SelectSpaceByStatus] {status}").ToList());
         }
 
         // for get all space details from db
         public List<Space> GetAll()
         {
-            return _applicationDbContext.Spaces.FromSqlRaw($"EXEC [dbo].[SelectSpaceByStatus]").ToList();
+            return UpdateSpaceList(_applicationDbContext.Spaces.FromSqlRaw($"EXEC [dbo].[SelectSpaceByStatus]").ToList());
         }
 
         // for delete space
         public int DeleteSpace(int id)
         {
             return _applicationDbContext.Database.ExecuteSqlRaw($"EXEC [dbo].[DeleteSpace] {id}");
+        }
+
+        //remove unwanted objects
+        private List<Space> UpdateSpaceList(List<Space> spaces)
+        {
+            List<Space> updatedList = new List<Space>();
+
+            if (spaces.Count > 0)
+            {
+                foreach (var space in spaces)
+                {
+                    Floor? floor = _floorRepo.GetFloorById(space.Floor);
+                    if (floor != null)
+                    {
+                        space.FloorNavigation = floor;
+                    }
+
+                    updatedList.Add(space);
+                }
+            }
+
+            return updatedList;
         }
     }
 }
